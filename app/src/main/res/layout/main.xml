@@ -107,6 +107,7 @@
         android:id="@+id/tvresult"
         android:layout_width="0dp"
         android:layout_height="110dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvGreen"
         app:layout_constraintStart_toStartOf="@+id/tvGreen"
