@@ -63,9 +63,7 @@
       />
 
 
-
-
-    <TextView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/tvBlue"
         android:layout_width="0dp"
         android:layout_height="@dimen/height"
@@ -77,7 +75,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvGreen"
         app:layout_constraintTop_toTopOf="@+id/tvGreen" />
 
-    <TextView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/tvGreen"
         android:layout_width="0dp"
         android:layout_height="@dimen/height"
@@ -89,7 +87,7 @@
         app:layout_constraintStart_toEndOf="@+id/tvRed"
         app:layout_constraintTop_toTopOf="@+id/tvRed" />
 
-    <TextView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/tvRed"
         android:layout_width="0dp"
         android:layout_height="@dimen/height"
@@ -103,13 +101,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/redBar" />
 
-    <TextView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/tvresult"
         android:layout_width="0dp"
         android:layout_height="110dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/tvGreen"
         app:layout_constraintStart_toStartOf="@+id/tvGreen"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.68" />
+
+    <Button
+        android:id="@+id/btnMix"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mix"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/tvresult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGreen" />
 </androidx.constraintlayout.widget.ConstraintLayout>
