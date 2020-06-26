@@ -3,12 +3,15 @@ package tools.mahmoudmabrok.colorlearner.feature
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
-import android.graphics.Path
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.addListener
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.shape.CornerFamily
+import com.google.android.material.shape.ShapeAppearanceModel
 import com.jem.rubberpicker.RubberSeekBar
 import kotlinx.android.synthetic.main.main.*
 import tools.mahmoudmabrok.colorlearner.R
@@ -17,6 +20,9 @@ import tools.mahmoudmabrok.colorlearner.util.ColorHelper
 class MainActivity : AppCompatActivity() {
 
     val mTag = javaClass.simpleName
+
+    val srcViews by lazy { listOf<ShapeableImageView>(tvRed, tvGreen, tvBlue) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +36,29 @@ class MainActivity : AppCompatActivity() {
              * 1 move colors into center of result
              * 2 change color of result view
              */
-            //    moveViews()
+            moveViews()
             animateResultView()
         }
+
+
+        addCornerToViews()
+
+
+    }
+
+    private fun addCornerToViews() {
+        val radius = this.resources.getDimension(R.dimen.border_radius_hug)
+        val mode = ShapeAppearanceModel()
+            .toBuilder()
+            .setAllCorners(CornerFamily.ROUNDED, radius)
+            .build()
+
+        srcViews.forEach {
+            it.shapeAppearanceModel = mode
+        }
+
+        tvresult.shapeAppearanceModel = mode
+
     }
 
     /**
@@ -114,10 +140,22 @@ fun View.animateColor(toColor: Int) {
  * animate moving a view to center of other view
  */
 fun View.animateToCenter(targetView: View) {
-    val animator = ObjectAnimator.ofFloat(this, View.X, View.Y, Path().apply {
-        lineTo(targetView.x, targetView.y)
-    }).apply {
+    Log.d("animateToCenter", "$this $targetView")
+    val orX = this.x
+    val orY = this.y
+
+    // used tom return view to its base place
+    val revers = ObjectAnimator.ofFloat(this, View.Y, targetView.y, orY).apply {
+        duration = 100
+    }
+
+    // base animator to animate view into result view by changing Y
+    ObjectAnimator.ofFloat(this, View.Y, this.y, targetView.y).apply {
         duration = 700
+        addListener(onEnd = {
+            revers.start()
+        })
         start()
     }
+
 }
