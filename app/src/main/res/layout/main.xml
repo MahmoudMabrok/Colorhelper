@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr">
+
+
+    <com.jem.rubberpicker.RubberSeekBar
+        android:id="@+id/redBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        app:highlightTrackColor="@color/red"
+        app:layout_constraintBottom_toTopOf="@+id/tvRed"
+        app:layout_constraintEnd_toEndOf="@+id/tvRed"
+        app:layout_constraintStart_toStartOf="@+id/tvRed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxValue="255"
+        app:minValue="1"
+        app:initialValue="255"
+        app:normalTrackColor="#AAAAAA"
+        app:normalTrackWidth="3dp"
+        app:stretchRange="24dp" />
+
+    <com.jem.rubberpicker.RubberSeekBar
+        android:id="@+id/greenBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        app:highlightTrackColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/tvGreen"
+        app:layout_constraintEnd_toEndOf="@+id/tvGreen"
+        app:layout_constraintStart_toStartOf="@+id/tvGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxValue="255"
+        app:minValue="1"
+        app:initialValue="255"
+        app:normalTrackColor="#AAAAAA"
+        app:normalTrackWidth="3dp"
+        app:stretchRange="24dp" />
+
+
+       <com.jem.rubberpicker.RubberSeekBar
+        android:id="@+id/blueBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        app:highlightTrackColor="@color/blue"
+        app:layout_constraintBottom_toTopOf="@+id/tvBlue"
+        app:layout_constraintEnd_toEndOf="@+id/tvBlue"
+        app:layout_constraintStart_toStartOf="@+id/tvBlue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxValue="255"
+        app:minValue="1"
+        app:initialValue="255"
+        app:normalTrackColor="#AAAAAA"
+        app:normalTrackWidth="3dp"
+           android:padding="0dp"
+      />
+
+
+
+
+    <TextView
+        android:id="@+id/tvBlue"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/tvGreen"
+        app:layout_constraintTop_toTopOf="@+id/tvGreen" />
+
+    <TextView
+        android:id="@+id/tvGreen"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toStartOf="@+id/tvBlue"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/tvRed"
+        app:layout_constraintTop_toTopOf="@+id/tvRed" />
+
+    <TextView
+        android:id="@+id/tvRed"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/red"
+        app:layout_constraintEnd_toStartOf="@+id/tvGreen"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/redBar" />
+
+    <TextView
+        android:id="@+id/tvresult"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvGreen"
+        app:layout_constraintStart_toStartOf="@+id/tvGreen"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
+</androidx.constraintlayout.widget.ConstraintLayout>
