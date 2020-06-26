@@ -118,6 +118,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mix"
+        android:drawableStart="@drawable/ic_change"
         android:textAllCaps="false"
         app:layout_constraintBottom_toTopOf="@+id/tvresult"
         app:layout_constraintEnd_toEndOf="parent"

@@ -2,13 +2,13 @@ package tools.mahmoudmabrok.colorlearner.feature
 
 import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.addListener
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -16,6 +16,7 @@ import com.jem.rubberpicker.RubberSeekBar
 import kotlinx.android.synthetic.main.main.*
 import tools.mahmoudmabrok.colorlearner.R
 import tools.mahmoudmabrok.colorlearner.util.ColorHelper
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -144,18 +145,24 @@ fun View.animateToCenter(targetView: View) {
     val orX = this.x
     val orY = this.y
 
-    // used tom return view to its base place
-    val revers = ObjectAnimator.ofFloat(this, View.Y, targetView.y, orY).apply {
-        duration = 100
-    }
+    /*   // used tom return view to its base place
+       val revers = ObjectAnimator.ofFloat(this, View.Y, targetView.y, orY).apply {
+           duration = 100
+       }
 
-    // base animator to animate view into result view by changing Y
-    ObjectAnimator.ofFloat(this, View.Y, this.y, targetView.y).apply {
-        duration = 700
-        addListener(onEnd = {
-            revers.start()
-        })
-        start()
-    }
+       // base animator to animate view into result view by changing Y
+       ObjectAnimator.ofFloat(this, View.Y, this.y, targetView.y).apply {
+           duration = 700
+           addListener(onEnd = {
+               revers.start()
+           })
+           start()
+       }
+   */
 
+    val pvhX = PropertyValuesHolder.ofFloat(View.X, targetView.x)
+    val pvhY = PropertyValuesHolder.ofFloat(View.Y, targetView.y)
+    val animator: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(this, pvhX, pvhY)
+    animator.duration = 1200
+    animator.start()
 }
