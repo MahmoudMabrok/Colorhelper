@@ -1,4 +1,6 @@
 # Colorhelper
+[![HitCount](http://hits.dwyl.com//MahmoudMabrok/Colorhelper.svg)](http://hits.dwyl.com//MahmoudMabrok/Colorhelper)
+
 
 # demo 
 
