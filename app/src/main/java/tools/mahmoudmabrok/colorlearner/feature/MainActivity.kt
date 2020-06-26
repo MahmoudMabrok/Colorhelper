@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.addListener
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.ShapeAppearanceModel
@@ -142,27 +143,24 @@ fun View.animateColor(toColor: Int) {
  */
 fun View.animateToCenter(targetView: View) {
     Log.d("animateToCenter", "$this $targetView")
-    val orX = this.x
-    val orY = this.y
 
-    /*   // used tom return view to its base place
-       val revers = ObjectAnimator.ofFloat(this, View.Y, targetView.y, orY).apply {
-           duration = 100
-       }
+    // used tom return view to its base place
+    val pvhXReverse = PropertyValuesHolder.ofFloat(View.X, this.x)
+    val pvhYReverse = PropertyValuesHolder.ofFloat(View.Y, this.y)
+    val animatorReverse: ObjectAnimator =
+        ObjectAnimator.ofPropertyValuesHolder(this, pvhXReverse, pvhYReverse)
+    animatorReverse.duration = 100
 
-       // base animator to animate view into result view by changing Y
-       ObjectAnimator.ofFloat(this, View.Y, this.y, targetView.y).apply {
-           duration = 700
-           addListener(onEnd = {
-               revers.start()
-           })
-           start()
-       }
-   */
-
+    // base animator to animate view into result view by changing Y,X
     val pvhX = PropertyValuesHolder.ofFloat(View.X, targetView.x)
     val pvhY = PropertyValuesHolder.ofFloat(View.Y, targetView.y)
     val animator: ObjectAnimator = ObjectAnimator.ofPropertyValuesHolder(this, pvhX, pvhY)
     animator.duration = 1200
     animator.start()
+
+    animator.apply {
+        addListener(onEnd = {
+            animatorReverse.start()
+        })
+    }
 }
