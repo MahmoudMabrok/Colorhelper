@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
              * 2 change color of result view
              */
             moveViews()
-            animateResultView()
+
         }
 
 
@@ -82,7 +82,9 @@ class MainActivity : AppCompatActivity() {
     private fun moveViews() {
         tvRed.animateToCenter(tvresult)
         tvGreen.animateToCenter(tvresult)
-        tvBlue.animateToCenter(tvresult)
+        tvBlue.animateToCenter(tvresult) {
+            animateResultView()
+        }
 
     }
 
@@ -141,7 +143,7 @@ fun View.animateColor(toColor: Int) {
 /**
  * animate moving a view to center of other view
  */
-fun View.animateToCenter(targetView: View) {
+fun View.animateToCenter(targetView: View, actionAtEnd: (() -> Unit)? = null) {
     Log.d("animateToCenter", "$this $targetView")
 
     // used tom return view to its base place
@@ -160,6 +162,7 @@ fun View.animateToCenter(targetView: View) {
 
     animator.apply {
         addListener(onEnd = {
+            actionAtEnd?.invoke()
             animatorReverse.start()
         })
     }
